@@ -108,6 +108,7 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include=".gitignore" />
+        <Content Include="README.md" />
         <Content Include="Thunderstore\icon.png" />
         <Content Include="Thunderstore\manifest.json" />
         <Content Include="Thunderstore\README.md" />
@@ -138,8 +139,8 @@
     </Target>
     -->
     <Target Name="Copy" AfterTargets="ILRepack">
-        <!--<Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Users\crypt\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\OdinQOL test\BepInEx\plugins\OdinPlus-OdinsQOL\$(AssemblyName).dll&quot;" />-->
         <Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Users\crypt\RiderProjects\SleepingBag\Thunderstore\$(AssemblyName).dll&quot;" />
+        <Exec Command="copy /Y &quot;C:\Users\crypt\RiderProjects\SleepingBag\README.md&quot; &quot;C:\Users\crypt\RiderProjects\SleepingBag\Thunderstore\README.md&quot;" />
     </Target>
 
 </Project>
