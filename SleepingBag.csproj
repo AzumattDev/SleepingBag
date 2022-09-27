@@ -108,6 +108,10 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include=".gitignore" />
+        <Content Include="Thunderstore\icon.png" />
+        <Content Include="Thunderstore\manifest.json" />
+        <Content Include="Thunderstore\README.md" />
+        <Content Include="Thunderstore\SleepingBag.dll" />
         <EmbeddedResource Include="assets\sleepingbag" />
         <Content Include="ILRepack.targets" />
         <Content Include="Libs\PieceManager.dll">
@@ -133,5 +137,9 @@
     <Target Name="AfterBuild">
     </Target>
     -->
+    <Target Name="Copy" AfterTargets="ILRepack">
+        <!--<Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Users\crypt\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\OdinQOL test\BepInEx\plugins\OdinPlus-OdinsQOL\$(AssemblyName).dll&quot;" />-->
+        <Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Users\crypt\RiderProjects\SleepingBag\Thunderstore\$(AssemblyName).dll&quot;" />
+    </Target>
 
 </Project>
