@@ -457,6 +457,7 @@ public class Item
 
 					if (itemType is ItemDrop.ItemData.ItemType.Bow or ItemDrop.ItemData.ItemType.Shield or ItemDrop.ItemData.ItemType.OneHandedWeapon or ItemDrop.ItemData.ItemType.TwoHandedWeapon)
 					{
+						statcfg("Tool Tier", $"Tool Tier of {englishName}. Dictates if the object can cut down hard trees.", shared => shared.m_toolTier, (shared, value) => shared.m_toolTier = value);
 						statcfg("Block Armor", $"Block armor of {englishName}.", shared => shared.m_blockPower, (shared, value) => shared.m_blockPower = value);
 						statcfg("Block Armor per Level", $"Block armor per level for {englishName}.", shared => shared.m_blockPowerPerLevel, (shared, value) => shared.m_blockPowerPerLevel = value);
 						statcfg("Block Force", $"Block force of {englishName}.", shared => shared.m_deflectionForce, (shared, value) => shared.m_deflectionForce = value);
@@ -531,8 +532,8 @@ public class Item
 							statcfg("Accuracy", $"Accuracy for {englishName}.", shared => shared.m_attack.m_projectileAccuracy, (shared, value) => shared.m_attack.m_projectileAccuracy = value);
 							statcfg("Minimum Velocity", $"Minimum velocity for {englishName}.", shared => shared.m_attack.m_projectileVelMin, (shared, value) => shared.m_attack.m_projectileVelMin = value);
 							statcfg("Velocity", $"Velocity for {englishName}.", shared => shared.m_attack.m_projectileVel, (shared, value) => shared.m_attack.m_projectileVel = value);
-							statcfg("Maximum Draw Time", $"Time until {englishName} is fully drawn at skill level 0.", shared => shared.m_holdDurationMin, (shared, value) => shared.m_holdDurationMin = value);
-							statcfg("Stamina Drain", $"Stamina drain per second while drawing {englishName}.", shared => shared.m_holdStaminaDrain, (shared, value) => shared.m_holdStaminaDrain = value);
+							statcfg("Maximum Draw Time", $"Time until {englishName} is fully drawn at skill level 0.", shared => shared.m_attack.m_drawDurationMin, (shared, value) => shared.m_attack.m_drawDurationMin = value);
+							statcfg("Stamina Drain", $"Stamina drain per second while drawing {englishName}.", shared => shared.m_attack.m_drawStaminaDrain, (shared, value) => shared.m_attack.m_drawStaminaDrain = value);
 						}
 					}
 				}
