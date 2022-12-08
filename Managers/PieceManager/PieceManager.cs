@@ -24,6 +24,8 @@ public enum CraftingTable
     [InternalName("forge")] Forge,
     [InternalName("piece_artisanstation")] ArtisanTable,
     [InternalName("piece_stonecutter")] StoneCutter,
+    [InternalName("piece_magetable")] MageTable,
+    [InternalName("blackforge")] BlackForge,
     Custom
 }
 

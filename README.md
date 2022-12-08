@@ -45,6 +45,9 @@ For Questions or Comments, find me in the Odin Plus Team Discord or in mine:
 
 ---
 > v1.0.2
+> - Update to fix Harmony bug found in ItemManager.
+>
+> v1.0.2
 > - Update for Mistlands
 > 
 > v1.0.1
