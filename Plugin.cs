@@ -16,7 +16,7 @@ namespace SleepingBag
     public class SleepingBagPlugin : BaseUnityPlugin
     {
         internal const string ModName = "SleepingBag";
-        internal const string ModVersion = "1.0.4";
+        internal const string ModVersion = "1.0.5";
         internal const string Author = "Azumatt";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -48,7 +48,7 @@ namespace SleepingBag
             sleepingBag.Description.English(
                 "Allows you to set your spawn point with less requirements than a bed, and to sleep under the stars if you are lucky with the weather.");
             sleepingBag.RequiredItems.Add("sleepingbag_item", 1, true);
-            sleepingBag.Category.Add(BuildPieceCategory.Furniture);
+            sleepingBag.Category.Set(BuildPieceCategory.Furniture);
             sleepingBag.Crafting.Set(CraftingTable.None);
             DestroyImmediate(sleepingBag.Prefab.GetComponent<WearNTear>());
             MaterialReplacer.RegisterGameObjectForShaderSwap(sleepingBag.Prefab,

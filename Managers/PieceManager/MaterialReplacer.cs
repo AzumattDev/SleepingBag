@@ -58,7 +58,6 @@ namespace PieceManager
         }
 
         private static bool hasRun;
-
         [HarmonyPriority(Priority.VeryHigh)]
         private static void ReplaceAllMaterialsWithOriginal()
         {
@@ -130,7 +129,6 @@ namespace PieceManager
                             {
                                 t.shader = Shader.Find(name);
                             }
-
                             break;
                         default:
                             t.shader = Shader.Find("ToonDeferredShading2017");
@@ -138,7 +136,6 @@ namespace PieceManager
                     }
                 }
             }
-
             hasRun = true;
         }
     }

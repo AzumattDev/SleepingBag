@@ -1,3 +1,5 @@
+> v1.0.5
+> - Update for Valheim 0.217.22
 > v1.0.4
 > - Update for Valheim 0.216.9
 >
