@@ -23,10 +23,12 @@ public enum CraftingTable
 	Inventory,
 	[InternalName("piece_workbench")] Workbench,
 	[InternalName("piece_cauldron")] Cauldron,
+	[InternalName("piece_MeadCauldron")] MeadCauldron,
 	[InternalName("forge")] Forge,
 	[InternalName("piece_artisanstation")] ArtisanTable,
 	[InternalName("piece_stonecutter")] StoneCutter,
 	[InternalName("piece_magetable")] MageTable,
+	[InternalName("piece_preptable")] PrepTable,
 	[InternalName("blackforge")] BlackForge,
 	Custom,
 }
@@ -464,7 +466,7 @@ public class Item
 			foreach (Item item in registeredItems.Where(i => i.configurability != Configurability.Disabled))
 			{
 				string nameKey = item.Prefab.GetComponent<ItemDrop>().m_itemData.m_shared.m_name;
-				string englishName = new Regex("""['\["\]]""").Replace(english.Localize(nameKey), "").Trim();
+				string englishName = new Regex(@"[=\n\t\\""\'\[\]]*").Replace(english.Localize(nameKey), "").Trim();
 				string localizedName = Localization.instance.Localize(nameKey).Trim();
 
 				int order = 0;
@@ -1041,7 +1043,7 @@ public class Item
 	[HarmonyPriority(Priority.Last)]
 	internal static void Patch_ObjectDBInit(ObjectDB __instance)
 	{
-		if (__instance.GetItemPrefab("Wood") == null)
+		if (__instance.GetItemPrefab("YagluthDrop") == null)
 		{
 			return;
 		}
@@ -1383,7 +1385,7 @@ public class Item
 		}
 	}
 
-	private static bool CheckItemIsUpgrade(InventoryGui gui) => gui.m_selectedRecipe.Value?.m_quality > 0;
+	private static bool CheckItemIsUpgrade(InventoryGui gui) => gui.m_selectedRecipe.ItemData?.m_quality > 0;
 
 	internal static IEnumerable<CodeInstruction> Transpile_InventoryGui(IEnumerable<CodeInstruction> instructions)
 	{
@@ -2025,7 +2027,7 @@ public static class PrefabManager
 			RegisterStatusEffect(shared.m_setStatusEffect);
 		}
 
-		__instance.UpdateItemHashes();
+		__instance.UpdateRegisters();
 	}
 
 	[HarmonyPriority(Priority.VeryHigh)]

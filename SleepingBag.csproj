@@ -110,6 +110,9 @@
         <Reference Include="Unity.TextMeshPro">
             <HintPath>$(CorlibPath)\Unity.TextMeshPro.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>$(CorlibPath)\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Managers\ItemManager.cs"/>

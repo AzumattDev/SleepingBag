@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BepInEx;
 using BepInEx.Bootstrap;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SleepingBag;
 
@@ -16,10 +17,10 @@ public class SleepingBagElement : MonoBehaviour
     public GameObject sleepingBagItemObjectBackpacks = null!;
 
     public Sprite sleepingBagSprite = null!;
-    public Sprite SleepingBagSpriteBackpacks = null!;
+    public Sprite sleepingBagSpriteBackpacks = null!;
 
     public Sprite sleepingBagItemSprite = null!;
-    public Sprite SleepingBagItemSpriteBackpacks = null!;
+    public Sprite sleepingBagItemSpriteBackpacks = null!;
 
     void Awake()
     {
@@ -47,10 +48,6 @@ public class SleepingBagElement : MonoBehaviour
         if (!IsBackpacksInstalled()) return;
         sleepingBagItemObject.SetActive(false);
         sleepingBagItemObjectBackpacks.SetActive(true);
-        if (item != null)
-        {
-            item.m_itemData.m_variant = 1;
-        }
     }
 
     internal static bool IsBackpacksInstalled()

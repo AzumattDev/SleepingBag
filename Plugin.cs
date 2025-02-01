@@ -18,7 +18,7 @@ namespace SleepingBag
     public class SleepingBagPlugin : BaseUnityPlugin
     {
         internal const string ModName = "SleepingBag";
-        internal const string ModVersion = "1.0.6";
+        internal const string ModVersion = "1.0.7";
         internal const string Author = "Azumatt";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -41,7 +41,6 @@ namespace SleepingBag
             sleepingBagItem.Crafting.Add(ItemManager.CraftingTable.Workbench, 1);
             sleepingBagItem.RequiredItems.Add("DeerHide", 3);
             sleepingBagItem.RequiredItems.Add("LeatherScraps", 2);
-            //sleepingBagItem.Snapshot();
 
             BuildPiece sleepingBag = new("sleepingbag", "sleepingbag_piece");
             sleepingBag.Name.English("Sleeping bag");
@@ -49,13 +48,17 @@ namespace SleepingBag
             sleepingBag.RequiredItems.Add("sleepingbag_item", 1, true);
             sleepingBag.Category.Set(BuildPieceCategory.Furniture);
             sleepingBag.Crafting.Set(CraftingTable.None);
-            //sleepingBag.Snapshot();
-            DestroyImmediate(sleepingBag.Prefab.GetComponent<WearNTear>());
+            sleepingBag.Snapshot();
 
             MaterialReplacer.RegisterGameObjectForShaderSwap(sleepingBagItem.Prefab, MaterialReplacer.ShaderType.PieceShader);
             MaterialReplacer.RegisterGameObjectForShaderSwap(sleepingBag.Prefab, MaterialReplacer.ShaderType.PieceShader);
 
             PiecePrefabManager.RegisterPrefab("sleepingbag", "sfx_wrap_unwrap");
+
+            if (SleepingBagElement.IsBackpacksInstalled())
+            {
+                UpdateTheSleepingBag(sleepingBag.Prefab, sleepingBagItem.Prefab);
+            }
 
             Assembly assembly = Assembly.GetExecutingAssembly();
             _harmony.PatchAll(assembly);
@@ -93,10 +96,35 @@ namespace SleepingBag
             }
         }
 
+        internal static void UpdateTheSleepingBag(GameObject sleepingBag, GameObject sleepingBagItem)
+        {
+            if (sleepingBag == null || sleepingBagItem == null) return;
+            // Sleeping bag piece
+            SleepingBagElement? sleepingBagElement = sleepingBag.GetComponent<SleepingBagElement>();
+            Piece? sleepingBagPiece = sleepingBag.GetComponent<Piece>();
+            WearNTear? sleepingBagPieceWnT = sleepingBag.GetComponent<WearNTear>();
+            sleepingBagPiece.m_icon = sleepingBagElement.sleepingBagSpriteBackpacks;
+            sleepingBagPieceWnT.m_new = sleepingBagElement.sleepingBagObjectBackpacks;
+            sleepingBagPieceWnT.m_worn = sleepingBagElement.sleepingBagObjectBackpacks;
+            sleepingBagPieceWnT.m_broken = sleepingBagElement.sleepingBagObjectBackpacks;
+
+
+            // Sleeping bag item
+            SleepingBagElement? sleepingBagItemElement = sleepingBagItem.GetComponent<SleepingBagElement>();
+            ItemDrop? sleepingBagItemItemDrop = sleepingBagItem.GetComponent<ItemDrop>();
+            if (sleepingBagItemElement.sleepingBagItemSpriteBackpacks != null)
+            {
+                sleepingBagItemItemDrop.m_itemData.m_shared.m_icons =
+                [
+                    sleepingBagItemElement.sleepingBagItemSpriteBackpacks
+                ];
+            }
+        }
+
 
         #region ConfigOptions
 
-        private static ConfigEntry<bool>? _serverConfigLocked;
+        /*private static ConfigEntry<bool>? _serverConfigLocked;*/
 
         private ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description, bool synchronizedSetting = true)
         {

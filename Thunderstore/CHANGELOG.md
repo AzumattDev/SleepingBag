@@ -1,3 +1,6 @@
+> v1.0.7
+> - Update for Bog Witch
+> - Uses Backpack's sleeping bag model when Smoothbrain's Backpacks is installed (icon changes too)
 > v1.0.6
 > - Prevent message from showing even when you were allowed to sleep
 > - Register an effect in ZNetScene that wasn't before (like it should have been)
