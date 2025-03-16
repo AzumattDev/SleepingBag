@@ -1,3 +1,5 @@
+> v1.0.8
+> - Update ServerSync
 > v1.0.7
 > - Update for Bog Witch
 > - Uses Backpack's sleeping bag model when Smoothbrain's Backpacks is installed (icon changes too)
